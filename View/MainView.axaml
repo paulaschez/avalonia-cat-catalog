@@ -1,0 +1,994 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ns="clr-namespace:CatalogoGatos.ViewModel"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        Width="800" Height="450"
+        x:Class="CatalogoGatos.View.MainView"
+        x:DataType="ns:MainViewModel"
+        Title="CatalogoAvalonia"
+        MinHeight="350"
+        MinWidth="600"
+        Closing="Window_OnClosing">
+
+
+    <Panel>
+        <Panel.Background>
+            <ImageBrush Source="avares://CatalogoGatos/Assets/Images/fondo.jpg" Stretch="UniformToFill" />
+        </Panel.Background>
+
+        <Panel>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="6*" />
+                    <RowDefinition Height="1.5*" />
+
+
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="1" Background="{DynamicResource RosaOscuro}" CornerRadius="20" Margin="40, 0, 40, 0">
+
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.25*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="0.25*" />
+                            <ColumnDefinition Width="1.25*" />
+                            <ColumnDefinition Width="0.1*" />
+                            <ColumnDefinition Width="1.25*" />
+                            <ColumnDefinition Width="0.25*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.30*" />
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="0.30*" />
+
+                        </Grid.RowDefinitions>
+
+                        <Viewbox Grid.Row="1" Grid.Column="1">
+
+                            <!-- Foto Polaroid -->
+                            <Border Background="{DynamicResource Crema}">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="4*"></RowDefinition>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                    </Grid.RowDefinitions>
+
+                                    <!-- Imagen del Gato-->
+                                    <Viewbox Grid.Row="0">
+                                        <Panel>
+                                            <Border Width="100"
+                                                    Height="100"
+                                                    Background="{DynamicResource AmarilloClaro}" />
+
+                                            <Image
+                                                Width="100"
+                                                Height="100"
+                                                Stretch="UniformToFill"
+                                                Source="{Binding SelectedImg}"
+                                                Margin="4, 4, 4, 2.5">
+                                            </Image>
+                                        </Panel>
+                                    </Viewbox>
+
+                                    <!-- Nombre del Gato-->
+                                    <Panel Grid.Row="1">
+                                        <Viewbox>
+                                            <TextBlock
+                                                IsVisible="{Binding EsVer}"
+                                                Foreground="Black"
+                                                Text="{Binding Nombre}"
+                                                FontFamily="{DynamicResource FuentePersonalizada}"
+                                                Margin="5,7,5,7" />
+
+                                        </Viewbox>
+
+                                        <Viewbox MaxWidth="70">
+                                            <TextBox
+                                                Watermark="Nombre"
+                                                IsVisible="{Binding !EsVer}"
+                                                Width="100"
+                                                Text="{Binding Nombre}"
+                                                FontFamily="{DynamicResource FuentePersonalizada}"
+                                                Margin="5,7,5,7" />
+
+                                        </Viewbox>
+                                    </Panel>
+
+
+                                </Grid>
+
+                            </Border>
+
+
+                        </Viewbox>
+
+                        <Viewbox Grid.Column="1" Grid.Row="2" Margin="0,0,0,10">
+                            <Button
+                                IsVisible="{Binding !EsVer}"
+                                Content="Añadir foto"
+                                Classes="Boton1Dialogo"
+                                Foreground="Black"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Top"
+                                Command="{Binding SubirFotoCommand}"
+                                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                Background="{DynamicResource AmarilloSombra}"
+                                FontFamily="{DynamicResource FuentePersonalizada}" />
+                        </Viewbox>
+
+
+                        <Grid Grid.Column="3" Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="0.15*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="0.15*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Panel Grid.Row="0">
+
+                                <!-- Panel Botones Sexo -->
+                                <Border CornerRadius="25" Background="{DynamicResource Crema}">
+                                    <Grid HorizontalAlignment="Center">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- Boton Macho-->
+                                        <Viewbox Grid.Column="0">
+                                            <Button
+                                                Name="BtnMacho"
+                                                ToolTip.Tip="Macho"
+                                                Width="60" Height="60"
+                                                CornerRadius="5"
+                                                Margin="10, 10, 10, 10"
+                                                Classes.Seleccionado="{Binding EsMacho}"
+                                                Classes.NoSeleccionado="True"
+                                                IsEnabled="{Binding !EsVer}"
+                                                Command="{Binding SeleccionarMachoCommand}">
+                                                <Image Stretch="Uniform" Source="../Assets/Images/macho.png" />
+                                            </Button>
+                                        </Viewbox>
+
+                                        <!-- Boton Hembra-->
+                                        <Viewbox Grid.Column="1">
+                                            <Button
+                                                Name="BtnHembra"
+                                                ToolTip.Tip="Hembra"
+                                                Width="60" Height="60"
+                                                CornerRadius="5"
+                                                Classes.Seleccionado="{Binding EsHembra}"
+                                                Classes.NoSeleccionado="True"
+                                                Margin="10, 10, 10, 10"
+                                                IsEnabled="{Binding !EsVer}"
+                                                Command="{Binding SeleccionarHembraCommand}">
+                                                <Image Stretch="Uniform" Source="../Assets/Images/hembra.png" />
+                                            </Button>
+                                        </Viewbox>
+                                    </Grid>
+                                </Border>
+                            </Panel>
+
+                            <!-- Panel Fecha de nacimiento -->
+                            <Panel Grid.Row="2">
+                                <Border CornerRadius="25" Background="{DynamicResource Crema}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="1.5*" />
+                                        </Grid.ColumnDefinitions>
+                                        <!-- Icono tarta -->
+                                        <Image Grid.Column="0"
+                                               ToolTip.Tip="Fecha de nacimiento"
+                                               Margin="20, 5, 0, 10"
+                                               Stretch="Uniform"
+                                               Source="../Assets/Images/cumple.png"
+                                               HorizontalAlignment="Left" />
+                                        <!-- Fecha de nacimiento -->
+                                        <Viewbox Grid.Column="1">
+                                            <Panel>
+                                                <!-- TextBlock Fecha-->
+                                                <TextBlock HorizontalAlignment="Center"
+                                                           Text="{Binding FechaNacimiento}"
+                                                           FontFamily="{DynamicResource FuentePersonalizada}"
+                                                           Margin="0,0,10,0"
+                                                           Foreground="Black" IsVisible="{Binding EsVer}" />
+                                                <!-- Calendario -->
+                                                <CalendarDatePicker IsVisible="{Binding !EsVer}"
+                                                                    Margin="0,0,10,0"
+                                                                    SelectedDate="{Binding SelectedDate}" />
+                                            </Panel>
+
+                                        </Viewbox>
+
+                                    </Grid>
+                                </Border>
+                            </Panel>
+
+                            <!-- Panel Esterilizado -->
+                            <Panel Grid.Row="4">
+                                <Border CornerRadius="25" Background="{DynamicResource Crema}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="1.5*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- Icono esterilizado-->
+                                        <Image Grid.Column="0"
+                                               ToolTip.Tip="¿Está esterilizado?"
+                                               Source="../Assets/Images/esterilizacion.png"
+                                               Stretch="Uniform"
+                                               HorizontalAlignment="Left"
+                                               Margin="15, 10, 0, 10">
+
+                                        </Image>
+
+                                        <!-- ToggleSwitch esterilizado-->
+                                        <Viewbox Grid.Column="1" Stretch="Uniform" Margin="10,0,10,0">
+                                            <ToggleSwitch Classes="EstiloToggle" IsChecked="{Binding EstaCastrado}"
+                                                          IsEnabled="{Binding !EsVer}" />
+                                        </Viewbox>
+
+                                    </Grid>
+                                </Border>
+                            </Panel>
+                        </Grid>
+
+                        <!-- Segunda columna información-->
+                        <Grid Grid.Column="5" Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="0.15*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="0.15*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <!-- Panel Chip-->
+                            <Panel Grid.Row="0">
+                                <Border CornerRadius="25" Background="{DynamicResource Crema}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="1.5*" />
+                                        </Grid.ColumnDefinitions>
+                                        <!-- Icono chip-->
+                                        <Image Grid.Column="0"
+                                               ToolTip.Tip="¿Tiene chip?"
+                                               Source="../Assets/Images/chip.png"
+                                               Stretch="Uniform"
+                                               HorizontalAlignment="Left"
+                                               Margin="15, 10, 0, 10">
+                                        </Image>
+
+                                        <!-- ToggleSwitch Chip-->
+                                        <Viewbox Grid.Column="1" Stretch="Uniform" Margin="10,0,10,0">
+                                            <ToggleSwitch Classes="EstiloToggle" IsChecked="{Binding TieneChip}"
+                                                          IsEnabled="{Binding !EsVer}" />
+                                        </Viewbox>
+
+                                    </Grid>
+                                </Border>
+                            </Panel>
+
+                            <!-- Panel Raza -->
+                            <Panel Grid.Row="2">
+                                <Border CornerRadius="25" Background="{DynamicResource Crema}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="0.3*" />
+                                            <ColumnDefinition Width="0.7*" />
+                                            <ColumnDefinition Width="0.3*" />
+                                            <ColumnDefinition Width="1.7*" />
+                                            <ColumnDefinition Width="0.3*" />
+                                        </Grid.ColumnDefinitions>
+                                        <!-- Icono raza -->
+                                        <Viewbox Grid.Column="1">
+                                            <Image
+                                                Stretch="Uniform"
+                                                ToolTip.Tip="Raza"
+                                                Source="../Assets/Images/raza.png" />
+                                        </Viewbox>
+
+                                        <!-- Información Razas-->
+                                        <Panel Grid.Column="3">
+                                            <!-- Texto Razas -->
+                                            <Viewbox Stretch="Uniform">
+                                                <TextBlock HorizontalAlignment="Center"
+                                                           Text="{Binding Raza}"
+                                                           IsVisible="{Binding EsVer}"
+                                                           FontFamily="{DynamicResource FuentePersonalizada}"
+                                                           Foreground="Black" />
+                                            </Viewbox>
+
+                                            <!-- ComboBox Razas-->
+                                            <Viewbox Stretch="Uniform">
+                                                <ComboBox MaxDropDownHeight="100" Width="100"
+                                                          ItemsSource="{Binding Razas}"
+                                                          SelectedItem="{Binding SelectedRaza}"
+                                                          IsVisible="{Binding !EsVer}"
+                                                          FontFamily="{DynamicResource FuentePersonalizada}"
+                                                          
+                                                          >
+                                                </ComboBox>
+                                            </Viewbox>
+                                        </Panel>
+                                    </Grid>
+                                </Border>
+                            </Panel>
+
+                            <!-- Panel Color -->
+                            <Panel Grid.Row="4">
+                                <Border CornerRadius="25" Background="{DynamicResource Crema}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="0.3*" />
+                                            <ColumnDefinition Width="0.75*" />
+                                            <ColumnDefinition Width="0.3*" />
+                                            <ColumnDefinition Width="1.8*" />
+                                            <ColumnDefinition Width="0.3*" />
+
+                                        </Grid.ColumnDefinitions>
+                                        <!-- Icono color-->
+                                        <Image Grid.Column="1"
+                                               ToolTip.Tip="Color"
+                                               Stretch="Uniform"
+                                               Source="../Assets/Images/color.png" />
+
+                                        <!-- Información color-->
+                                        <Panel Grid.Column="3">
+                                            <!-- Texto color-->
+                                            <Grid IsVisible="{Binding EsVer}">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="1.75*" />
+                                                    <ColumnDefinition Width="0.3*" />
+                                                </Grid.ColumnDefinitions>
+                                                <!-- TextBlock-->
+                                                <Viewbox Grid.Column="0">
+                                                    <TextBlock HorizontalAlignment="Center"
+                                                               Text="{Binding Color}"
+                                                               FontFamily="{DynamicResource FuentePersonalizada}"
+                                                               Foreground="Black" />
+                                                </Viewbox>
+                                                <!-- Circulo Color-->
+                                                <Viewbox Grid.Column="1">
+                                                    <Panel>
+                                                        <!-- Relleno de color-->
+                                                        <Ellipse Fill="{Binding ColorBrush }"
+                                                                 Width="30"
+                                                                 Height="30"
+                                                                 Stroke="Black"
+                                                                 StrokeThickness="0.5" />
+                                                        <!-- Con imagen-->
+                                                        <Ellipse Width="30"
+                                                                 Height="30"
+                                                                 Stroke="Black"
+                                                                 StrokeThickness="0.5">
+                                                            <Ellipse.Fill>
+                                                                <ImageBrush Source="{Binding ImgColor}"
+                                                                            Stretch="UniformToFill" />
+                                                            </Ellipse.Fill>
+                                                        </Ellipse>
+                                                    </Panel>
+                                                </Viewbox>
+                                            </Grid>
+
+                                            <!-- ComboBox Color-->
+                                            <Viewbox>
+                                                <ComboBox MaxDropDownHeight="100" Width="100"
+                                                          SelectedItem="{Binding SelectedColor}"
+                                                          ItemsSource="{Binding Colores}"
+                                                          IsVisible="{Binding !EsVer}">
+                                                    <ComboBox.ItemTemplate>
+                                                        <!-- DataTemplate Color -->
+                                                        <DataTemplate x:DataType="ns:ColorItem">
+
+                                                            <Grid MaxWidth="100">
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="1.75*" />
+                                                                    <ColumnDefinition Width="0.3*" />
+                                                                </Grid.ColumnDefinitions>
+                                                                
+                                                                <Viewbox Grid.Column="0">
+                                                                    
+                                                                    <TextBlock  HorizontalAlignment="Center"
+                                                                        VerticalAlignment="Center"
+                                                                        Text="{Binding Color}"
+                                                                        FontFamily="{DynamicResource FuentePersonalizada}" />
+                                                                </Viewbox>
+
+                                                                
+
+                                                                <Viewbox Grid.Column="1" HorizontalAlignment="Stretch"
+                                                                         VerticalAlignment="Stretch">
+                                                                    <Panel HorizontalAlignment="Stretch"
+                                                                           VerticalAlignment="Stretch">
+                                                                        <Ellipse Fill="{Binding ColorBrush}"
+                                                                            Width="20"
+                                                                            Height="20" Stroke="Black"
+                                                                            StrokeThickness="0.5" />
+                                                                        <Ellipse Width="20"
+                                                                            Height="20"
+                                                                            Stroke="Black"
+                                                                            StrokeThickness="0.5">
+                                                                            <Ellipse.Fill>
+                                                                                <ImageBrush Source="{Binding ImgColor}"
+                                                                                    Stretch="UniformToFill" />
+                                                                            </Ellipse.Fill>
+                                                                        </Ellipse>
+                                                                    </Panel>
+                                                                </Viewbox>
+                                                            </Grid>
+                                                        </DataTemplate>
+                                                    </ComboBox.ItemTemplate>
+                                                </ComboBox>
+                                            </Viewbox>
+                                        </Panel>
+                                    </Grid>
+                                </Border>
+                            </Panel>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+
+            <!-- Panel Botones navegación-->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="*" />
+
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Botón anterior-->
+                <Viewbox Grid.Row="1" Grid.Column="0">
+                    <Panel IsVisible="{Binding EsVer}">
+                        <Border
+                            Width="100" Height="36"
+                            CornerRadius="21"
+                            Margin="31,31,5,29"
+                            Background="{DynamicResource AmarilloOscuro}"
+                            HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+                        <Button
+                            IsEnabled="{Binding !IsFirst}"
+                            ToolTip.Tip="Anterior"
+                            Classes="BotonAmarillo"
+                            Command="{Binding AnteriorCommand}"
+                            Width="100" Height="35"
+                            Background="{DynamicResource AmarilloClaro}"
+                            CornerRadius="20"
+                            Margin="30,30,5,30"
+                            HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Image Stretch="Uniform" Source="../Assets/Images/izquierda.png" />
+                        </Button>
+                    </Panel>
+                </Viewbox>
+
+                <!-- Botón Borrar / Cancelar-->
+                <Viewbox Grid.Row="1" Grid.Column="2">
+                    <Panel>
+
+                        <Border
+                            Width="100" Height="36"
+                            CornerRadius="21"
+                            Margin="31,33,1,30"
+                            Background="{DynamicResource RosaBotonSombra}"
+                            HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+
+                        <Button
+                            ToolTip.Tip="{Binding TxtBtnDelete}"
+                            Classes="BotonRosa"
+                            Width="100" Height="35"
+                            Command="{Binding BtnBorrarCancelarCommand}"
+                            Background="{DynamicResource RosaBotonClaro}"
+                            CornerRadius="20"
+                            Margin="30,30,0,30"
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            IsEnabled="{Binding !EstaVacia}">
+                            <Image Stretch="Uniform" Source="../Assets/Images/add_delete.png">
+                                <Image.RenderTransform>
+                                    <RotateTransform Angle="45" />
+                                </Image.RenderTransform>
+                            </Image>
+                        </Button>
+                    </Panel>
+                </Viewbox>
+
+                <!-- Botón Añadir / Aceptar-->
+                <Viewbox Grid.Row="1" Grid.Column="1">
+                    <Panel>
+
+                        <Border
+                            Width="100" Height="36"
+                            CornerRadius="21"
+                            Margin="1,33,31,30"
+                            Background="{DynamicResource RosaBotonSombra}"
+                            HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+
+                        <Button
+                            ToolTip.Tip="{Binding TxtBtnAdd}"
+                            Classes="BotonRosa"
+                            Width="100" Height="35"
+                            Command="{Binding AddCommand}"
+                            Background="{DynamicResource RosaBotonClaro}"
+                            CornerRadius="20"
+                            Margin="0,30,30,30"
+                            HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Image Stretch="Uniform" Source="{Binding ImgAceptarAdd}" />
+                        </Button>
+                    </Panel>
+                </Viewbox>
+
+                <!-- Botón Siguiente-->
+                <Viewbox Grid.Row="1" Grid.Column="3">
+                    <Panel IsVisible="{Binding EsVer}">
+
+                        <Border
+                            Width="100" Height="36"
+                            CornerRadius="21"
+                            Margin="5,31,29,29"
+                            Background="{DynamicResource AmarilloOscuro}"
+                            HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+
+                        <Button
+                            IsEnabled="{Binding !IsLast}"
+                            ToolTip.Tip="Siguiente"
+                            Classes="BotonAmarillo"
+                            Width="100" Height="35"
+                            Command="{Binding SiguienteCommand}"
+                            Background="{DynamicResource AmarilloClaro}"
+                            CornerRadius="20"
+                            Margin="5,30,30,30"
+                            HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Image Stretch="Uniform" Source="../Assets/Images/izquierda.png">
+                                <Image.RenderTransform>
+                                    <RotateTransform Angle="180" />
+                                </Image.RenderTransform>
+                            </Image>
+                        </Button>
+                    </Panel>
+                </Viewbox>
+            </Grid>
+
+            
+            
+            <!-- Panel Dialog -->
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Center" IsVisible="{Binding  MostrarDialog}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Viewbox Grid.Column="1">
+                    <!-- Estructura de Borders para dar el efecto de borde oscuro y claro-->
+                    <Border BorderThickness="1" Width="300" Height="150"
+                            CornerRadius="14"
+                            Background="{DynamicResource AmarilloOscuro}"
+                            BorderBrush="{DynamicResource AmarilloOscuro}">
+                        <Border
+                            BorderThickness="6"
+                            CornerRadius="14"
+                            Background="{DynamicResource AmarilloSombra}"
+                            BorderBrush="{DynamicResource AmarilloSombra}">
+
+                            <Border BorderBrush="{DynamicResource AmarilloOscuro}"
+                                    Background="{DynamicResource AmarilloClaro}"
+                                    BorderThickness="2"
+                                    CornerRadius="14">
+
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="3*" />
+                                        <RowDefinition Height="1.5*" />
+                                        <RowDefinition Height="0.3*" />
+
+                                    </Grid.RowDefinitions>
+                                    <!-- Contenido del Dialog -->
+                                    <TextBlock Grid.Row="0" Text="{Binding TxtDialog}"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               Margin="0,10,0,0"
+                                               TextAlignment="Center"
+                                               FontFamily="{DynamicResource FuentePersonalizada}"
+                                               FontSize="18" />
+
+                                    <Panel Grid.Row="1">
+                                        
+                                        <!-- Botones (cuando hay dos opciones)-->
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="2*" />
+                                                <ColumnDefinition Width="0.5*" />
+                                                <ColumnDefinition Width="2*" />
+                                                <ColumnDefinition Width="*" />
+
+                                            </Grid.ColumnDefinitions>
+                                            
+                                            <!-- Botón de Aceptar -->
+                                            <Button Grid.Column="1"
+                                                    Background="{DynamicResource AmarilloOscuro}"
+                                                    FontFamily="{DynamicResource FuentePersonalizada}"
+                                                    Width="80"
+                                                    Command="{Binding PulsarOkCommand}"
+                                                    Classes="Boton1Dialogo"
+                                                    IsVisible="{Binding MostrarDosOp}">
+                                                <TextBlock HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"
+                                                           Text="Sí" />
+
+                                            </Button>
+                                            
+                                            <!-- Botón de Cancelar -->
+                                            <Button Grid.Column="3"
+                                                    Background="{DynamicResource AmarilloSombra}"
+                                                    FontFamily="{DynamicResource FuentePersonalizada}"
+                                                    Width="80"
+                                                    Command="{Binding CancelarCommand}"
+                                                    Classes="Boton2Dialogo"
+                                                    IsVisible="{Binding MostrarDosOp}">
+                                                <TextBlock HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center">
+                                                    Cancelar
+                                                </TextBlock>
+                                            </Button>
+                                        </Grid>
+
+                                        <!-- Botón (cuando hay una opción)-->
+                                        <Grid IsVisible="{Binding !MostrarDosOp}">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+
+                                            </Grid.ColumnDefinitions>
+                                            <Button Grid.Column="1"
+                                                    Background="{DynamicResource AmarilloOscuro}"
+                                                    FontFamily="{DynamicResource FuentePersonalizada}"
+                                                    Width="80"
+                                                    Command="{Binding PulsarOkCommand}"
+                                                    Classes="Boton1Dialogo">
+                                                <TextBlock HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"
+                                                           Text="OK" />
+                                            </Button>
+                                        </Grid>
+                                    </Panel>
+                                </Grid>
+                            </Border>
+                        </Border>
+                    </Border>
+                </Viewbox>
+            </Grid>
+        </Panel>
+    </Panel>
+
+    <!-- Estilos-->
+    <Window.Styles>
+
+        <!-- Estilo ToggleSwitch-->
+        <Style Selector="ToggleSwitch.EstiloToggle">
+            <Setter Property="Width" Value="100" />
+            <Setter Property="Height" Value="50" />
+
+            <!-- Borde exterior-->
+            <Style Selector="^ /template/ Border#OuterBorder">
+                <Setter Property="Width" Value="90" />
+                <Setter Property="Height" Value="40" />
+                <Setter Property="CornerRadius" Value="25" />
+                <Setter Property="Background" Value="{DynamicResource RosaClaro}" />
+                <Setter Property="BorderThickness" Value="0" />
+
+            </Style>
+            
+            <!-- Circulo cuando no está checkeado-->
+            <Style Selector="^ /template/ Ellipse#SwitchKnobOff">
+                <Setter Property="Width" Value="34" />
+                <Setter Property="Height" Value="34" />
+                <Setter Property="Margin" Value="21,5,55,5" />
+                <Setter Property="Fill" Value="{DynamicResource RosaOscuro}" />
+            </Style>
+
+            <!-- Fondo cuando está chekeado-->
+            <Style Selector="^:checked  /template/ Border#SwitchKnobBounds">
+                <Setter Property="Width" Value="90" />
+                <Setter Property="Height" Value="40" />
+                <Setter Property="CornerRadius" Value="25" />
+                <Setter Property="Background" Value="{DynamicResource RosaOscuro}" />
+            </Style>
+            
+            <!-- Circulo cuando esta en ON-->
+            <Style Selector="^:checked /template/ Ellipse#SwitchKnobOn">
+                <Setter Property="Width" Value="34" />
+                <Setter Property="Height" Value="34" />
+                <Setter Property="Margin" Value="50,5,5,5" />
+                <Setter Property="Fill" Value="{DynamicResource RosaClaro}" />
+            </Style>
+
+            <!-- Cuando el ratón se posa cuando no está checkeado -->
+            <Style Selector="^:pointerover /template/ Border#OuterBorder">
+                <Setter Property="BorderBrush" Value="{DynamicResource RosaOscuro}" />
+                <Setter Property="BorderThickness" Value="1" />
+            </Style>
+            <!-- Cuando el ratón se posa cuando está checkeado -->
+            <Style Selector="^:pointerover /template/ Border#SwitchKnobBounds">
+                <Setter Property="Background" Value="{DynamicResource RosaOscuro}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource HoverRosaOscuro}" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="Width" Value="90" />
+                <Setter Property="Height" Value="40" />
+            </Style>
+
+        </Style>
+
+        <!-- Estilo Botón Sexo No Seleccionado-->
+        <Style Selector="Button.NoSeleccionado">
+            <Setter Property="Background" Value="{DynamicResource RosaClaro}" />
+            <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="BorderBrush" Value="{DynamicResource HoverRosaClaro}" />
+                <Setter Property="Background" Value="{DynamicResource RosaClaro}" />
+            </Style>
+            <Style Selector="^:pressed /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource HoverRosaClaro}" />
+            </Style>
+            <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource RosaClaro}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource RosaClaro}" />
+            </Style>
+        </Style>
+
+        <!-- Estilo Botón Sexo Seleccionado-->
+        <Style Selector="Button.Seleccionado">
+            <Setter Property="Background" Value="{DynamicResource RosaOscuro}" />
+            <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="BorderBrush" Value="{DynamicResource HoverRosaOscuro}" />
+                <Setter Property="Background" Value="{DynamicResource RosaOscuro}" />
+            </Style>
+            <Style Selector="^:pressed /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource HoverRosaOscuro}" />
+            </Style>
+            <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource RosaOscuro}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource RosaOscuro}" />
+            </Style>
+        </Style>
+
+        <!-- Estilo Botón Amarillo (AnteriorSiguiente)-->
+        <Style Selector="Button.BotonAmarillo">
+            <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="BorderBrush" Value="{DynamicResource AmarilloSombra}" />
+                <Setter Property="Background" Value="{DynamicResource AmarilloClaro}" />
+
+            </Style>
+            <Style Selector="^:pressed  /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource AmarilloSombra}" />
+            </Style>
+        </Style>
+
+        <!-- Estilo Botón Rosa (Añadir/Borrar)-->
+        <Style Selector="Button.BotonRosa">
+            <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="BorderBrush" Value="{DynamicResource RosaBotonClick}" />
+                <Setter Property="Background" Value="{DynamicResource RosaBotonClaro}" />
+
+            </Style>
+            <Style Selector="^:pressed  /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource RosaBotonClick}" />
+            </Style>
+        </Style>
+
+        <!-- Estilo Botón 1-->
+        <Style Selector="Button.Boton2Dialogo">
+            <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="BorderBrush" Value="{DynamicResource AmarilloSombraOscuro}" />
+                <Setter Property="Background" Value="{DynamicResource AmarilloSombra}" />
+            </Style>
+            <Style Selector="^:pressed  /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource AmarilloSombraOscuro}" />
+            </Style>
+        </Style>
+
+        <!-- Estilo Botón 2 -->
+        <Style Selector="Button.Boton1Dialogo">
+            <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="BorderBrush" Value="{DynamicResource AmarilloOscuroProfundo}" />
+                <Setter Property="Background" Value="{DynamicResource AmarilloOscuro}" />
+            </Style>
+            <Style Selector="^:pressed  /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource AmarilloOscuroProfundo}" />
+            </Style>
+        </Style>
+
+        <!-- Estilo CalendarDatePicker-->
+        <Style Selector="CalendarDatePicker">
+            <Setter Property="Background" Value="{DynamicResource AmarilloClaro}" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="BorderBrush" Value="{DynamicResource AmarilloOscuro}" />
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="Padding" Value="8" />
+            <Setter Property="CornerRadius" Value="10" />
+
+            <Setter Property="FontFamily" Value="{DynamicResource FuentePersonalizada}" />
+            <Setter Property="FontSize" Value="16" />
+
+            <!-- Plantilla del control -->
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Grid ColumnDefinitions="*,Auto">
+                        <!-- TextBox para la fecha -->
+                        <TextBox Name="PART_TextBox"
+                                 Grid.Column="0"
+                                 IsReadOnly="True"
+                                 Background="{TemplateBinding Background}"
+                                 Foreground="{DynamicResource RosaOscuro}"
+                                 BorderBrush="{TemplateBinding BorderBrush}"
+                                 BorderThickness="{TemplateBinding BorderThickness}"
+                                 Padding="{TemplateBinding Padding}"
+                                 CornerRadius="{TemplateBinding CornerRadius}"
+                                 FontSize="{TemplateBinding FontSize}"
+                                 Text="{Binding SelectedDate, StringFormat='dd/MM/yyyy', RelativeSource={RelativeSource TemplatedParent}}" />
+
+                        <!-- Botón para abrir el calendario -->
+                        <Button Name="PART_Button"
+                                Grid.Column="1"
+                                Width="35"
+                                Height="35"
+                                Margin="8,0,0,0"
+                                Background="Transparent"
+                                BorderThickness="0">
+                            <Image Source="avares://CatalogoGatos/Assets/Images/calendario.png"
+                                   Width="25"
+                                   Height="25" />
+                        </Button>
+
+                        <!-- Popup del calendario -->
+                        <Popup Grid.Column="0" Name="PART_Popup"
+                               PlacementTarget="{TemplateBinding}"
+                               IsLightDismissEnabled="True">
+                            <Border Background="{DynamicResource AmarilloSombra}"
+                                    BorderBrush="{DynamicResource AmarilloOscuro}"
+                                    BorderThickness="2"
+                                    CornerRadius="10"
+                                    Padding="10">
+                                <Calendar Name="PART_Calendar"
+                                          Background="{DynamicResource AmarilloClaro}"
+                                          BorderBrush="{DynamicResource AmarilloOscuro}"
+                                          BorderThickness="2"
+                                          FontFamily="{DynamicResource FuentePersonalizada}"
+                                          FontSize="16"
+                                          SelectedDate="{Binding SelectedDate}"
+                                          DisplayDateEnd="{Binding FechaActual}" />
+                            </Border>
+                        </Popup>
+                    </Grid>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+
+
+        <!-- Estilo para el calendario -->
+        <Style Selector="Calendar">
+            <Setter Property="Background" Value="{DynamicResource AmarilloClaro}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource AmarilloOscuro}" />
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="Foreground" Value="Black" />
+        </Style>
+
+        <!-- Estilo para el encabezado del calendario (mes/año) -->
+        <Style Selector="CalendarButton">
+            <Setter Property="Background" Value="{DynamicResource AmarilloSombra}" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="BorderBrush" Value="{DynamicResource AmarilloOscuro}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="FontSize" Value="14" />
+        </Style>
+
+
+        <!-- Estilo para los días del calendario -->
+        <Style Selector="CalendarDayButton">
+            <Setter Property="Background" Value="{DynamicResource AmarilloClaro}" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="BorderBrush" Value="{DynamicResource AmarilloOscuro}" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Width" Value="30" />
+            <Setter Property="Height" Value="30" />
+
+            <!-- Hover en los días -->
+            <Style Selector="^:hover">
+                <Setter Property="Background" Value="{DynamicResource AmarilloSombra}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource AmarilloOscuro}" />
+            </Style>
+
+        </Style>
+
+        <!-- Estilo para los ComboBox-->
+        <Style Selector="ComboBox">
+            <Setter Property="Background" Value="{DynamicResource AmarilloClaro}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource AmarilloOscuro}" />
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="Foreground" Value="Black" />
+
+            <!-- Estilo para el desplegable del ComboBox -->
+            <Style Selector="^:dropDown">
+                <Setter Property="Background" Value="{DynamicResource AmarilloSombra}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource AmarilloOscuro}" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="Foreground" Value="Black" />
+            </Style>
+
+            <!-- Hover en el ComboBox -->
+            <Style Selector="^:hover">
+                <Setter Property="Background" Value="{DynamicResource AmarilloOscuro}" />
+                <Setter Property="Foreground" Value="Black" />
+            </Style>
+
+        </Style>
+
+
+        <!-- Estilo para los elementos del ComboBox -->
+        <Style Selector="ComboBoxItem">
+            <Setter Property="Background" Value="{DynamicResource AmarilloClaro}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource AmarilloOscuro}" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Height" Value="40" />
+            <Setter Property="Foreground" Value="Black" />
+
+            <Style Selector="^:hover /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource RosaOscuro}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource AmarilloOscuro}" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="Height" Value="40" />
+                <Setter Property="Foreground" Value="Black" />
+            </Style>
+
+        </Style>
+
+        <!-- Estilo para los TextBox-->
+        <Style Selector="TextBox">
+            <Setter Property="Foreground" Value="{DynamicResource RosaOscuro}" />
+            <Setter Property="Background" Value="{DynamicResource AmarilloClaro}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource AmarilloOscuro}" />
+            <Setter Property="BorderThickness" Value="2" />
+        </Style>
+
+
+    </Window.Styles>
+    
+    <Window.Resources>
+        <SolidColorBrush x:Key="RosaOscuro" Color="#fa8996" />
+        <SolidColorBrush x:Key="RosaClaro" Color="#fedbd9" />
+        <SolidColorBrush x:Key="HoverRosaClaro" Color="#f1a8b3" />
+        <SolidColorBrush x:Key="HoverRosaOscuro" Color="#c75b65" />
+        <SolidColorBrush x:Key="Crema" Color="#fff5ee" />
+        <SolidColorBrush x:Key="AmarilloClaro" Color="#f4e2b0" />
+        <SolidColorBrush x:Key="AmarilloSombra" Color="#f5d993" />
+        <SolidColorBrush x:Key="AmarilloOscuro" Color="#f5cd60" />
+        <SolidColorBrush x:Key="AmarilloSombraOscuro" Color="#e5be70" /> <!-- Más oscuro que AmarilloSombra -->
+        <SolidColorBrush x:Key="AmarilloOscuroProfundo" Color="#d4a53e" /> <!-- Más oscuro que AmarilloOscuro -->
+        <SolidColorBrush x:Key="RosaBotonClaro" Color="#fedbd9" />
+        <SolidColorBrush x:Key="RosaBotonSombra" Color="#f7cac9" />
+        <SolidColorBrush x:Key="RosaBotonClick" Color="#f5c7c5" />
+        <FontFamily x:Key="FuentePersonalizada">avares://CatalogoGatos/Assets/Fonts/eurof35.ttf#eurofurence light</FontFamily>
+    </Window.Resources>
+</Window>

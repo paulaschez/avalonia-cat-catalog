@@ -1,0 +1,78 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+        <ApplicationManifest>app.manifest</ApplicationManifest>
+        <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Avalonia" Version="11.2.1"/>
+        <PackageReference Include="Avalonia.Desktop" Version="11.2.1"/>
+        <PackageReference Include="Avalonia.Themes.Fluent" Version="11.2.1"/>
+        <PackageReference Include="Avalonia.Fonts.Inter" Version="11.2.1"/>
+        <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+        <PackageReference Include="Avalonia.Diagnostics" Version="11.2.1">
+            <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
+            <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="View\MainView.axaml.cs">
+        <DependentUpon>MainWindow.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Assets\Images\hembra.png" />
+      <AvaloniaResource Include="Assets\Images\hembra.png" />
+      <None Remove="Assets\Images\macho.png" />
+      <AvaloniaResource Include="Assets\Images\macho.png" />
+      <None Remove="Assets\Images\esterilizacion.png" />
+      <AvaloniaResource Include="Assets\Images\esterilizacion.png" />
+      <None Remove="Assets\Images\cumple.png" />
+      <AvaloniaResource Include="Assets\Images\cumple.png" />
+      <None Remove="Assets\Fonts\Bayoreh.otf" />
+      <None Remove="Assets\Fonts\eurof35.ttf" />
+      <AvaloniaResource Include="Assets\Fonts\eurof35.ttf">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </AvaloniaResource>
+      <None Remove="Assets\Images\fondo.jpg" />
+      <AvaloniaResource Include="Assets\Images\fondo.jpg" />
+      <None Remove="Assets\Images\gato.jpeg" />
+      <None Remove="Assets\Images\chip.png" />
+      <AvaloniaResource Include="Assets\Images\chip.png" />
+      <None Remove="Assets\Images\raza.png" />
+      <AvaloniaResource Include="Assets\Images\raza.png" />
+      <None Remove="Assets\Images\color.png" />
+      <AvaloniaResource Include="Assets\Images\color.png" />
+      <None Remove="Assets\Images\izquierda.png" />
+      <AvaloniaResource Include="Assets\Images\izquierda.png" />
+      <None Remove="Assets\Images\add:delete.png" />
+      <AvaloniaResource Include="Assets\Images\add_delete.png" />
+      <None Remove="Assets\Images\bicolor.jpg" />
+      <None Remove="Assets\Images\bicolor.png" />
+      <AvaloniaResource Include="Assets\Images\bicolor.png" />
+      <None Remove="Assets\Images\tricolor.png" />
+      <AvaloniaResource Include="Assets\Images\tricolor.png" />
+      <None Remove="Assets\Images\calendario.png" />
+      <AvaloniaResource Include="Assets\Images\calendario.png" />
+      <None Remove="Assets\Images\aceptar.png" />
+      <None Remove="Assets\Images\gato_no_encontrado.jpg" />
+      <AvaloniaResource Include="Assets\Images\gato_no_encontrado.jpg" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <UpToDateCheckInput Remove="Styles\ToggleSwitchStyles.axaml" />
+      <UpToDateCheckInput Remove="Styles\CalendarDatePicker.axaml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="Assets\Images\aceptar.png" />
+    </ItemGroup>
+</Project>
