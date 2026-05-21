@@ -17,8 +17,8 @@ public partial class MainViewModel : ObservableObject
 
 {
     // Rutas y configuración inicial
-    public static string RutaImg = "../../../Assets/Images/";
-    public static string CarpetaDatos = Path.Combine(Directory.GetCurrentDirectory(), "../../../Datos");
+    public static string RutaImg = Path.Combine(Directory.GetCurrentDirectory(), "Assets", "Images") + "/";
+    public static string CarpetaDatos = Path.Combine(Directory.GetCurrentDirectory(), "Datos");
     public static string RutaArchivo = Path.Combine(CarpetaDatos, "gatos.json");
     public static string RutaImgDefecto = Path.Combine(RutaImg, "gato_no_encontrado.jpg");
 
@@ -342,7 +342,7 @@ public partial class MainViewModel : ObservableObject
     
     // Método para seleccionar una foto y mostrarla 
     [RelayCommand]
-    private async void SubirFoto(Window ventanaPadre)
+    private async Task SubirFoto(Window ventanaPadre)
     {
         var dlg = new OpenFileDialog(); 
         dlg.Filters.Add(new FileDialogFilter() { Name = "Imágenes JPEG", Extensions = { "jpg" } });

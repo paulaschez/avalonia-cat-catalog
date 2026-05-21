@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CatalogoGatos")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fbcf2bf89bc4df74dad1b9fe3a0caa93223176c6")]
 [assembly: System.Reflection.AssemblyProductAttribute("CatalogoGatos")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CatalogoGatos")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

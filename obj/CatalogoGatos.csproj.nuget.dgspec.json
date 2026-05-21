@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/paulasanchezvelez/RiderProjects/CatalogoGatos/CatalogoGatos.csproj": {}
+    "/Users/paulasanchezvelez/Desktop/Catalogo-Gatos-Avalonia/CatalogoGatos.csproj": {}
   },
   "projects": {
-    "/Users/paulasanchezvelez/RiderProjects/CatalogoGatos/CatalogoGatos.csproj": {
+    "/Users/paulasanchezvelez/Desktop/Catalogo-Gatos-Avalonia/CatalogoGatos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/paulasanchezvelez/RiderProjects/CatalogoGatos/CatalogoGatos.csproj",
+        "projectUniqueName": "/Users/paulasanchezvelez/Desktop/Catalogo-Gatos-Avalonia/CatalogoGatos.csproj",
         "projectName": "CatalogoGatos",
-        "projectPath": "/Users/paulasanchezvelez/RiderProjects/CatalogoGatos/CatalogoGatos.csproj",
+        "projectPath": "/Users/paulasanchezvelez/Desktop/Catalogo-Gatos-Avalonia/CatalogoGatos.csproj",
         "packagesPath": "/Users/paulasanchezvelez/.nuget/packages/",
-        "outputPath": "/Users/paulasanchezvelez/RiderProjects/CatalogoGatos/obj/",
+        "outputPath": "/Users/paulasanchezvelez/Desktop/Catalogo-Gatos-Avalonia/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/paulasanchezvelez/.nuget/NuGet/NuGet.Config"

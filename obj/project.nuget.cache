@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2VQzhbaiXRU=",
+  "dgSpecHash": "kv2PtsiyvtY=",
   "success": true,
-  "projectFilePath": "/Users/paulasanchezvelez/RiderProjects/CatalogoGatos/CatalogoGatos.csproj",
+  "projectFilePath": "/Users/paulasanchezvelez/Desktop/Catalogo-Gatos-Avalonia/CatalogoGatos.csproj",
   "expectedPackageFiles": [
     "/Users/paulasanchezvelez/.nuget/packages/avalonia/11.2.1/avalonia.11.2.1.nupkg.sha512",
     "/Users/paulasanchezvelez/.nuget/packages/avalonia.angle.windows.natives/2.1.22045.20230930/avalonia.angle.windows.natives.2.1.22045.20230930.nupkg.sha512",

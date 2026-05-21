@@ -20,12 +20,12 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = CatalogoGatos
-build_property.ProjectDir = /Users/paulasanchezvelez/RiderProjects/CatalogoGatos/
+build_property.ProjectDir = /Users/paulasanchezvelez/Desktop/Catalogo-Gatos-Avalonia/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 
-[/Users/paulasanchezvelez/RiderProjects/CatalogoGatos/App.axaml]
+[/Users/paulasanchezvelez/Desktop/Catalogo-Gatos-Avalonia/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[/Users/paulasanchezvelez/RiderProjects/CatalogoGatos/View/MainView.axaml]
+[/Users/paulasanchezvelez/Desktop/Catalogo-Gatos-Avalonia/View/MainView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
