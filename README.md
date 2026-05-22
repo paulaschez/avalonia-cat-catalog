@@ -44,7 +44,7 @@ Para compilar y ejecutar este proyecto en tu entorno local, necesitas:
 
 1. Clona este repositorio en tu máquina local:
    ```bash
-   git clone [https://github.com/paulaschez/avalonia-cat-catalog.git](https://github.com/paulaschez/avalonia-cat-catalog.git)
+   git clone https://github.com/paulaschez/avalonia-cat-catalog.git
     ```
 
 2. Navega al directorio raíz del proyecto:
